@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accessible Stopwatch</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="main-nav">
+        <div class="logo">
+            <span>⏱️ StopWatch</span>
+        </div>
+        <div class="utility-controls">
+            <button id="themeToggle" class="theme-toggle" aria-label="Toggle dark/light mode">
+                <span class="light-icon">☀️</span>
+                <span class="dark-icon">🌙</span>
+            </button>
+            <button id="fullscreenToggle" class="fullscreen-toggle" aria-label="Toggle fullscreen mode">
+                <span class="enter-fullscreen"><i class="fa-solid fa-expand"></i></span>
+                <span class="exit-fullscreen"><i class="fa-solid fa-compress"></i></span>
+            </button>
+        </div>
+    </nav>
+    
+
+    <main class="container">
+        <h1>Stopwatch</h1>
+        
+        <div class="stopwatch">
+            <div class="display" aria-live="polite" aria-label="stopwatch timer">
+                <span id="hours">00</span>:
+                <span id="minutes">00</span>:
+                <span id="seconds">00</span>:
+                <span id="milliseconds">00</span>
+            </div>
+            
+            <div class="controls">
+                <button id="startBtn" class="btn" aria-label="Start the stopwatch">
+                    <span class="btn-text">Start</span>
+                    <span class="shortcut">(S)</span>
+                </button>
+                
+                <button id="pauseBtn" class="btn" aria-label="Pause the stopwatch" disabled>
+                    <span class="btn-text">Pause</span>
+                    <span class="shortcut">(S)</span>
+                </button>
+                
+                <button id="resetBtn" class="btn" aria-label="Reset the stopwatch">
+                    <span class="btn-text">Reset</span>
+                    <span class="shortcut">(R)</span>
+                </button>
+                
+                <button id="lapBtn" class="btn" aria-label="Record a lap time" disabled>
+                    <span class="btn-text">Lap</span>
+                    <span class="shortcut">(L)</span>
+                </button>
+                
+                <button id="splitBtn" class="btn" aria-label="Record a split time without stopping" disabled>
+                    <span class="btn-text">Split</span>
+                    <span class="shortcut">(P)</span>
+                </button>
+            </div>
+        </div>
+        
+        <div class="laps-container">
+            <h2>Timer Presets</h2>
+        <div class="presets-container">
+            <button class="preset-btn" data-time="60000">1 min</button>
+            <button class="preset-btn" data-time="300000">5 min</button>
+            <button class="preset-btn" data-time="600000">10 min</button>
+            <button class="preset-btn" data-time="1800000">30 min</button>
+            <button class="preset-btn" data-time="3600000">1 hour</button>
+        </div>
+        
+        <div class="lap-times-header">
+            <h2>Lap Times</h2>
+            <div class="export-controls">
+                <button id="exportBtn" class="export-btn" aria-label="Export lap times" title="Export lap times">
+                    <span class="btn-text">Export</span>
+                    <span class="shortcut">(E)</span>
+                </button>
+                <div id="exportDropdown" class="export-dropdown">
+                    <button class="export-option" data-format="csv">CSV</button>
+                    <button class="export-option" data-format="json">JSON</button>
+                    <button class="export-option" data-format="txt">Text</button>
+                </div>
+            </div>
+        </div>
+        <ul id="lapsList" class="laps-list" aria-label="List of recorded lap times">
+            <!-- Lap times will be added here dynamically -->
+        </ul>
+        
+        <!-- Hidden element for screen reader announcements -->
+        <div id="statusAnnouncer" class="sr-only" aria-live="polite"></div>
+        </div>
+    </main>
+    
+    <script src="script.js"></script>
+</body>
+</html>
