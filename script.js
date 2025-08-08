@@ -211,9 +211,13 @@ function recordLap() {
         // Create lap time display
         const lapItem = document.createElement('li');
         lapItem.className = 'lap-item';
+       
+        // Format the total elapsed time for display
+        const totalTimeFormatted = formatTime(elapsedTime);
+                
         lapItem.innerHTML = `
             <span class="lap-number">Lap ${lapCount}</span>
-            <span class="lap-time">${lapTimeFormatted}</span>
+            <span class="lap-time">${totalTimeFormatted}</span>
             <span class="lap-segment">(Segment: ${lapTimeFormatted})</span>
         `;
         
@@ -224,7 +228,7 @@ function recordLap() {
         lastLapTime = elapsedTime;
         
         // Announce to screen readers
-        announceStatus(`Lap ${lapCount} recorded: ${lapTimeFormatted}`);
+       announceStatus(`Lap ${lapCount} recorded: Total time ${totalTimeFormatted}, Segment time ${lapTimeFormatted}`);
     }
 }
 
